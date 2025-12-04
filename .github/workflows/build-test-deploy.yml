@@ -25,18 +25,15 @@ jobs:
         username: ${{ github.actor }}
         password: ${{ secrets.GITHUB_TOKEN }}
 
-    - name: Set lowercase repository owner
-      run: echo "REPO_OWNER_LOWERCASE=${{ github.repository_owner | toLower }}" >> $GITHUB_ENV
-
     - name: Build and push frontend Docker image
       run: |
-        docker build ./app/frontend -t ghcr.io/$REPO_OWNER_LOWERCASE/ai-ui-frontend:${{ github.sha }}
-        docker push ghcr.io/$REPO_OWNER_LOWERCASE/ai-ui-frontend:${{ github.sha }}
+        docker build ./app/frontend -t ghcr.io/umeshpoojariaws/ai-ui-frontend:${{ github.sha }}
+        docker push ghcr.io/umeshpoojariaws/ai-ui-frontend:${{ github.sha }}
 
     - name: Build and push backend Docker image
       run: |
-        docker build ./app/backend -t ghcr.io/$REPO_OWNER_LOWERCASE/ai-ui-backend:${{ github.sha }}
-        docker push ghcr.io/$REPO_OWNER_LOWERCASE/ai-ui-backend:${{ github.sha }}
+        docker build ./app/backend -t ghcr.io/umeshpoojariaws/ai-ui-backend:${{ github.sha }}
+        docker push ghcr.io/umeshpoojariaws/ai-ui-backend:${{ github.sha }}
 
     - name: Run backend tests
       run: |
