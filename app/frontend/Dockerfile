@@ -5,8 +5,8 @@ WORKDIR /app
 COPY package.json ./
 RUN npm install
 
-COPY . .
+COPY src/. .
 
 EXPOSE 3000
 
-CMD ["npm", "start"]
+CMD ["npx", "serve", "-l", "3000"]

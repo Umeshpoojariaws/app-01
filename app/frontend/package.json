@@ -4,7 +4,7 @@
   "description": "Frontend for AI UI application",
   "main": "index.js",
   "scripts": {
-    "start": "serve -s build",
+    "start": "npx serve -l 3000",
     "build": "echo 'No build step for simple HTML/JS yet.'"
   },
   "keywords": [],

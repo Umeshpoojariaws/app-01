@@ -31,10 +31,10 @@ The CI/CD pipeline is configured to:
     ```
 3.  **Build and Load Docker Images (Local)**:
     ```bash
-    docker build -t ghcr.io/<YOUR_GITHUB_USERNAME>/ai-ui-frontend:local ./app/frontend
-    docker build -t ghcr.io/<YOUR_GITHUB_USERNAME>/ai-ui-backend:local ./app/backend
-    kind load docker-image ghcr.io/<YOUR_GITHUB_USERNAME>/ai-ui-frontend:local --name ai-ui-cluster
-    kind load docker-image ghcr.io/<YOUR_GITHUB_USERNAME>/ai-ui-backend:local --name ai-ui-cluster
+    docker build -t ai-ui-frontend:local ./app/frontend
+    docker build -t ai-ui-backend:local ./app/backend
+    kind load docker-image ai-ui-frontend:local --name ai-ui-cluster
+    kind load docker-image ai-ui-backend:local --name ai-ui-cluster
     ```
 4.  **Deploy to Kind Cluster**:
     ```bash

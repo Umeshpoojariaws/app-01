@@ -11,4 +11,5 @@ spec:
   - protocol: TCP
     port: 80
     targetPort: 3000
-  type: LoadBalancer # Use NodePort or ClusterIP for Kind if LoadBalancer is not handled by ingress
+    nodePort: 30000 # Map to hostPort 30080 as configured in kind-config.yaml
+  type: NodePort # Use NodePort for Kind to expose on host
