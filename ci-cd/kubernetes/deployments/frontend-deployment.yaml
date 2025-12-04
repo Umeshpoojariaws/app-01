@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ai-ui-frontend
+  labels:
+    app: ai-ui-frontend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ai-ui-frontend
+  template:
+    metadata:
+      labels:
+        app: ai-ui-frontend
+    spec:
+      containers:
+      - name: ai-ui-frontend
+        image: ghcr.io/${{ github.repository_owner }}/ai-ui-frontend:latest # Placeholder for image tag
+        ports:
+        - containerPort: 3000

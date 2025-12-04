@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: ai-ui-frontend-service
+  labels:
+    app: ai-ui-frontend
+spec:
+  selector:
+    app: ai-ui-frontend
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 3000
+  type: LoadBalancer # Use NodePort or ClusterIP for Kind if LoadBalancer is not handled by ingress

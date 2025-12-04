@@ -1,0 +1,64 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v2
+
+    - name: Log in to GitHub Container Registry
+      uses: docker/login-action@v2
+      with:
+        registry: ghcr.io
+        username: ${{ github.actor }}
+        password: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: Build and push frontend Docker image
+      run: |
+        docker build ./gitops-2/app/frontend -t ghcr.io/${{ github.repository_owner }}/ai-ui-frontend:${{ github.sha }}
+        docker push ghcr.io/${{ github.repository_owner }}/ai-ui-frontend:${{ github.sha }}
+
+    - name: Build and push backend Docker image
+      run: |
+        docker build ./gitops-2/app/backend -t ghcr.io/${{ github.repository_owner }}/ai-ui-backend:${{ github.sha }}
+        docker push ghcr.io/${{ github.repository_owner }}/ai-ui-backend:${{ github.sha }}
+
+    - name: Run backend tests
+      run: |
+        # Placeholder for running backend tests
+        echo "Running backend tests..."
+        # Example: docker run --rm ghcr.io/${{ github.repository_owner }}/ai-ui-backend:${{ github.sha }} python -m pytest ./app/tests
+
+  deploy:
+    needs: build-and-test
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Set up Kubeconfig for Kind
+      run: |
+        # For local Kind cluster, you'd typically run this locally or
+        # configure access credentials if deploying to a remote cluster.
+        # This step is a placeholder for how you might set up kubeconfig in a real CI/CD.
+        echo "Setting up Kubeconfig (manual step for Kind local deployment on M4 Mac)..."
+        # In a real scenario, you'd provide cluster credentials securely here.
+
+    - name: Deploy to Kubernetes
+      run: |
+        # Placeholder for deploying Kubernetes manifests
+        echo "Deploying to Kubernetes..."
+        # Example: kubectl apply -f ./gitops-2/ci-cd/kubernetes/deployments/frontend-deployment.yaml
+        # Example: kubectl apply -f ./gitops-2/ci-cd/kubernetes/services/frontend-service.yaml
