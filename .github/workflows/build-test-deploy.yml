@@ -27,12 +27,12 @@ jobs:
 
     - name: Build and push frontend Docker image
       run: |
-        docker build ./gitops-2/app/frontend -t ghcr.io/${{ github.repository_owner }}/ai-ui-frontend:${{ github.sha }}
+        docker build ./app/frontend -t ghcr.io/${{ github.repository_owner }}/ai-ui-frontend:${{ github.sha }}
         docker push ghcr.io/${{ github.repository_owner }}/ai-ui-frontend:${{ github.sha }}
 
     - name: Build and push backend Docker image
       run: |
-        docker build ./gitops-2/app/backend -t ghcr.io/${{ github.repository_owner }}/ai-ui-backend:${{ github.sha }}
+        docker build ./app/backend -t ghcr.io/${{ github.repository_owner }}/ai-ui-backend:${{ github.sha }}
         docker push ghcr.io/${{ github.repository_owner }}/ai-ui-backend:${{ github.sha }}
 
     - name: Run backend tests
