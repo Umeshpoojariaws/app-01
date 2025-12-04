@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: ai-ui-backend
-        image: ghcr.io/umeshpoojariaws/ai-ui-frontend:latest #ai-ui-backend:local # Use local image for Kind deployment
+        image: ghcr.io/umeshpoojariaws/ai-ui-backend:latest #ai-ui-backend:local # Use local image for Kind deployment
         ports:
         - containerPort: 8000
       imagePullSecrets:
