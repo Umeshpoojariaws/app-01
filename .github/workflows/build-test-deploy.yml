@@ -27,7 +27,8 @@ jobs:
 
       - name: Run backend tests
         run: |
-          docker run --rm -v "$(pwd)/app/backend:/app" python:3.9-slim-buster python -m pytest /app/tests
+          echo "Installing pytest and running backend tests..."
+          docker run --rm -v "$(pwd)/app/backend:/app" python:3.9-slim-buster sh -c "pip install pytest && python -m pytest /app/tests"
 
   build-and-push:
     runs-on: ubuntu-latest
